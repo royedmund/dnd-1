@@ -5,10 +5,9 @@
  I have been able to partially port it to TRS-80 TRSDOS BASIC on my Z80 system as I have been unable to determine what version of BASIC the original software was running on. 
  Any suggestions about how I should proceed would be welcome?
  
-STILL TO DO ON MY CURRENT BBC PORT - FILE I/O (CURRENTLY EMBEDDING THE EXTERNAL DATA IN PORTED CODE) 
+STILL TO DO ON MY CURRENT TRS-80 PORT - FILE I/O (CURRENTLY EMBEDDING THE EXTERNAL DATA IN PORTED CODE) 
 
-**** UPDATE 25-04-2021  ****
-NOW PORTING TO BASIC-PLUS RSTS/E WITH FILE I/O FOR DATA AND SAVING/LOADING GAME
+
 
 COMMANDS
 
