@@ -4,6 +4,18 @@ A preservation and playable recreation of **Richard Garriott's _Dungeons and Dra
 
 **Status (22 November 2026):** a **new, self-contained, playable BASIC adaptation** has been developed and tested under **trs80gp 2.5.8 emulating a TRS-80 Model III running ROM BASIC**. This is **not a line-for-line repair** of the complete historical program; some gameplay mechanics have been simplified or reconstructed, and the original files are preserved unchanged. **LDOS LBASIC 5.1 and physical Model III testing are still to do.**
 
+## PDP-11 / RSTS/E BASIC-PLUS edition — experimental
+
+We are now also building a **PDP-11** edition intended for **RSTS/E BASIC-PLUS**, inspired by Roy's memories of a **Teletype Model 33** on a school time-sharing system. The **exact 1977 host machine remains unknown**; targeting a PDP-11 now does not establish that the historical game originally ran on one.
+
+**[View `pdp11/DND11.BAS`](pdp11/DND11.BAS)** — the first self-contained **BASIC-PLUS V7.1-style source port** (602 numbered lines), based on the playable Model III restoration. It includes the same **seven dungeon maps**, classes, equipment shop, typed commands and paper-tape-style save/restore, with extensive explanatory `REM` statements.
+
+The PDP-11 version is adjusted for DEC's syntax: `EXTEND` mode, backslash (`\`) between statements, string functions **`MID(...)`** and **`LEFT(...)`** (not the Model III `MID$` / `LEFT$`), no `CLEAR 3000`, and short **26-character map `DATA` rows** better suited to a printed terminal listing. Rebuild it with `python3 tools/build_pdp11.py` and check it with `python3 tests/check_pdp11.py`.
+
+**Testing status:** this edition has **passed static checks only**. It has **not yet been entered, translated or run under a PDP-11/RSTS/E BASIC-PLUS interpreter**. The **TRS-80 Model III ROM BASIC edition remains the emulator-tested playable reference**. See the [PDP-11 installation and test guide](docs/PDP11_BASICPLUS.md) for the proposed `NEW`, `SAVE`, `RUN` workflow and compatibility caveats.
+
+**Language reference provided for development:** Digital Equipment Corporation, *BASIC-PLUS Language Manual*, **AA-2623D-TC**, December 1981 (**RSTS/E V7.1 / BASIC-PLUS V7.1**). The manual documents `EXTEND` / `NOEXTEND` (chapter 7), `REM` (7.4), control/input/data syntax (chapter 9), and `LEFT`/`MID` (10.5). The uploaded manual itself is not redistributed in this repository.
+
 ## Play the restored BASIC game
 
 **[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
@@ -48,7 +60,8 @@ See [the play guide](docs/PLAY_GUIDE.md) for instructions and caveats.
 | [DND1_source.pdf](DND1_source.pdf) | Surviving scanned historical source listing |
 | `DNG1`, `DNG2`, `DND3`, `DNG4`, `DNG5`, `DNG6` | Six complete 26×26 original-format numeric dungeon files |
 | [GMSTR](GMSTR) | Surviving game-state/map data (historical reference; not used by the new game at runtime) |
-| [DND1PLAY.BAS](DND1PLAY.BAS) | **New playable portable BASIC reconstruction**; original files not overwritten |
+| [DND1PLAY.BAS](DND1PLAY.BAS) | **New playable TRS-80/portable BASIC reconstruction**; original files not overwritten |
+| [pdp11/DND11.BAS](pdp11/DND11.BAS) | **New experimental PDP-11 / RSTS/E BASIC-PLUS source**; currently statically verified, not runtime tested |
 | [tests/check_playable.py](tests/check_playable.py) | Reproducible check of BASIC line references and all seven embedded map datasets |
 
 The historical transcription expects `DNG3`, but the preserved third dungeon file is named `DND3`. The newer game embeds its data and doesn't depend on that filename at runtime. The seventh map comes from the separate 26×26 `DATA` block in `DND1TRS.BAS`; it is **not identical** to any of the six external maps.
@@ -57,12 +70,13 @@ The port avoids `RESTORE <line>` (not supported by Model III ROM BASIC) and enco
 
 ## Documentation and test results
 
+- [PDP-11 / RSTS/E BASIC-PLUS port and test plan](docs/PDP11_BASICPLUS.md) — DEC dialect differences, manual reference and proposed runtime tests.
 - [Restoration design and changes](docs/RESTORATION_2026.md) — what was rebuilt, what is faithful, and what differs.
 - [Playing and saving](docs/PLAY_GUIDE.md) — concise user guide.
 - [TRS80gp testing notes](docs/TRS80GP_TESTING.md) — emulator test protocol plus dated results.
 - [Initial archival source audit](docs/SOURCE_AUDIT.md) — original-source and external-data findings.
 
-**Verified in emulator:** starting Fighter and Wizard characters, equipment shop, loading Dungeons 1, 2 and 7, look/help, moving and searching, status, monster encounter, offensive spell, retaliation/game-over, printing a full save, restoring a saved hero and map, and exit to BASIC. The static checker also validates all seven embedded grids against the surviving originals. **Not yet verified:** every historical rule/edge case, all dungeon playthroughs, LDOS LBASIC 5.1, physical hardware, or a fully authentic recreation of the incomplete original.
+**Verified in emulator:** starting Fighter and Wizard characters, equipment shop, loading Dungeons 1, 2 and 7, look/help, moving and searching, status, monster encounter, offensive spell, retaliation/game-over, printing a full save, restoring a saved hero and map, and exit to BASIC. The static checker also validates all seven embedded grids against the surviving originals. **Not yet verified:** every historical rule/edge case, all dungeon playthroughs, LDOS LBASIC 5.1, physical hardware, **PDP-11 / RSTS/E BASIC-PLUS runtime**, or a fully authentic recreation of the incomplete original.
 
 ## Period references and further reading
 
