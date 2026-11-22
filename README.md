@@ -40,7 +40,7 @@ The repository now includes a **full repaired copy of the historical 1,215-line 
 
 ### Historical hardware: a CDC 6000-series computer and a Model 33 Teletype
 
-![Control Data CDC 6600 mainframe with console and open equipment cabinets](https://upload.wikimedia.org/wikipedia/commons/c/c4/CDC_6600.jc.jpg)
+![Control Data CDC 6600 mainframe with console and open equipment cabinets](images/CDC_6600.jc.jpg)
 
 *Control Data CDC 6600 mainframe and console, as shown in the supplied photograph. Photograph by [Jitze Couperus](https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg), licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). The CDC 6600 illustrates the CDC 6000-series family; **the exact machine on which DND#1 originally ran remains unverified**.*
 
