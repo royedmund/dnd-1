@@ -60,6 +60,16 @@ The platform identification was a multi-step investigation, not an assumption ba
 
 **Research conclusion:** **CDC BASIC Version 2.0/2.1-compatible syntax — high confidence. CDC CYBER/6000 family — strongly indicated. Exact model, OS and compiler release — unverified.** Our [full source-evidence report](docs/ORIGINAL_PLATFORM.md) preserves those distinctions. This explains why we are developing separate CDC, PDP-11 and TRS-80 editions rather than conflating them.
 
+## Use the real TRS-80 Model III as a PiDP-11/70 terminal
+
+**[TTY300.BAS — LDOS/LBASIC 300-baud terminal](basic/TTY300.BAS)** is a new, **pure BASIC** serial-terminal experiment for Roy's **48 KB Model III with RS-232**, communicating with a **PiDP-11/70 running RSTS/E** via a Raspberry Pi **USB-to-RS-232 adapter**. It emulates a simple printing terminal, inspired by the **Teletype ASR 33** pictured below; the game runs **on RSTS/E**, and the Model III provides the keyboard and display.
+
+It uses the Model III UART ports directly (**232–235**), with **300 baud, 8N1, no flow control**, keyboard transmit, received-character display, CR/LF handling and basic backspace. It does **not** require the LDOS `*CL` driver; **do not run it while `RS232T/DVR` is managing the same port**.
+
+**[Wiring, installation and PiDP-11/SIMH serial setup](docs/TTY300_SETUP.md)** explains the DB25-to-USB-DB9 **null-modem connection**, `/dev/ttyUSB0`, the RSTS/E terminal-line requirement, and how to start the experimental [PDP-11 BASIC-PLUS DND port](pdp11/DND11.BAS). The *CDC BASIC source is not directly compatible with RSTS/E*.
+
+**Testing:** a basic emulator startup and static source checks pass; actual RS-232 communication with the PiDP-11/70 **has not yet been tested**. A BASIC polling terminal can drop incoming characters even at 300 baud—see the contemporary [LDOS Quarterly](https://www.tim-mann.org/trs80/doc/ldosq1-6.pdf). For reliable lengthy output, the supplied **LDOS LCOMM/CMD** with the interrupt-buffered **RS232T/DVR** is the recommended fallback.
+
 ## Play the restored BASIC game
 
 **[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
