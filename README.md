@@ -26,6 +26,40 @@ The exact CDC **model, OS and BASIC compiler revision are not established** by t
 
 **[Read the full evidence-based original-platform investigation](docs/ORIGINAL_PLATFORM.md).**
 
+## CDC BASIC Version 2 — historical-source restoration
+
+The repository now includes a **full repaired copy of the historical 1,215-line program**, expanded to **1,233 numbered lines** while preserving its original line numbers and game systems. This **CDC BASIC Version 2-compatible first pass** is intended for the **CYBER 70, CYBER 170 and 6000-series** computer families, using the original external numbered-file workflow.
+
+- **[cdc/DND1CDC.BAS](cdc/DND1CDC.BAS)** — complete source-derived DND#1 game (character creation, original equipment, all six historical dungeons, monsters, combat, magic and `GMSTR` save/load), with documented repairs
+- **[cdc/MAKEFILE.BAS](cdc/MAKEFILE.BAS)** — important **initialiser**: builds six native CDC binary dungeon files plus a fresh `GMSTR` from the original 26×26 map data. **Warning: it overwrites those existing files**
+- **[cdc/data/](cdc/data/)** — inspectable copies of all six historical grids; archival `DND3` is named `DNG3` **in the CDC folder only** so it matches Garriott's source
+- **[CDC time-sharing environment and installation](docs/CDC_BASIC_ENVIRONMENT.md)** — explains SCOPE/INTERCOM versus KRONOS/NOS, remote terminals, the `READY.` prompt and first-use procedures
+- **[Source repair log](docs/CDC_REPAIRS.md)** and **[automated static checks](tests/check_cdc.py)** — what changed and what remains untested
+
+**Status:** all 1,233 main statements and the initializer have passed the conservative **72-character line limit**, branch-target and dungeon-data consistency checks. **This source has NOT yet been compiled or run on a real/emulated CDC BASIC 2.0/2.1 system**, so actual runtime playability and save compatibility remain to be verified. The **TRS-80 Model III edition remains our emulator-tested game**.
+
+### Historical hardware: a CDC 6000-series computer and a Model 33 Teletype
+
+![CDC 6600 mainframe computer, a representative machine in the CDC 6000 series](https://commons.wikimedia.org/wiki/Special:FilePath/CDC%206600.jc.jpg)
+
+*CDC 6600 mainframe, photographed by [Jitze Couperus](https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). This is an example of a CDC 6000-series computer, **not evidence of the exact DND#1 host**. See also [CDC 6000 series — Wikipedia](https://en.wikipedia.org/wiki/CDC_6000_series).*
+
+![1974 Teletype Model 33 printing terminal with paper tape, historical advertisement](https://commons.wikimedia.org/wiki/Special:FilePath/Teletype%20Model%2033%20Terminal%20June%201974.jpg)
+
+*Teletype Model 33 terminal, Teletype Corporation advertisement (1974), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Teletype_Model_33_Terminal_June_1974.jpg), reported as **US public domain**. The Model 33's printing output and paper-tape reader illustrate the remote terminal experience; this is **not a verified photograph of the specific terminal used by Garriott**.*
+
+### How we identified the original BASIC and computer — research history
+
+The platform identification was a multi-step investigation, not an assumption based on which computer Garriott remembered:
+
+1. **Starting with Garriott's surviving source:** the repository's [`DND.BAS`](DND.BAS), historical scan and the [independent Gist transcription](https://gist.github.com/bussiere/11137495) revealed distinctive syntax: `BASE 0`, `FILE #1="DNG1"`, `READ #D`, `WRITE #7`, `RESTORE #4` and `RND(CLK(J9))`. These are much more diagnostic than common `PRINT` or `GOTO` statements.
+2. **Checking the PDP-11 theory:** [Garriott's 2014 account](https://www.shroudoftheavatar.com/?p=39149) recalls a “PDP 11 type” machine reached by acoustic modem from a teletype. We also examined the **December 1981 DEC RSTS/E BASIC-PLUS Language Manual** supplied for this project. Its file programming model does not explain the original `FILE #` numbered-file statements, so our [PDP-11 BASIC-PLUS edition](pdp11/DND11.BAS) is a **port**, not a claim about the original compiler.
+3. **Finding the Control Data documentation:** the [CDC *BASIC Language Version 2 Reference Manual*, October 1974](https://bitsavers.trailing-edge.com/pdf/cdc/cyber/lang/basic/19980300B_BASIC_Language_Version_2_Reference_Nov74.pdf), covers CYBER 70/170 and CDC 6000 systems. It explicitly documents **every one** of those unusual source constructs. It even uses **`RND(CLK(0))`** as an example of seeding the random-number generator. That combination is extremely strong **language-family evidence**.
+4. **Checking actual 1970s time-sharing procedures:** the same manual has terminal examples for **KRONOS/NOS** (`RECOVER /SYSTEM:BASIC`, `OLD, NEW, OR LIB FILE`, `READY.`) and for **SCOPE/INTERCOM**. It explicitly discusses **Model 33 and Model 35 TTY** remote terminals. It does **not** prove which OS or terminal model was used for this particular game.
+5. **Cross-checking independent historical accounts:** [the CRPG Addict's 2021 investigation](https://crpgaddict.blogspot.com/2021/07/game-421-dungeons-and-dragons-1-1977.html) also associates the game with a CDC-6000 rather than the commonly repeated PDP-11 attribution. The [1979 surviving printout](https://gist.github.com/bussiere/11137495) supplies a later archival date, not an exact original compiler version.
+
+**Research conclusion:** **CDC BASIC Version 2.0/2.1-compatible syntax — high confidence. CDC CYBER/6000 family — strongly indicated. Exact model, OS and compiler release — unverified.** Our [full source-evidence report](docs/ORIGINAL_PLATFORM.md) preserves those distinctions. This explains why we are developing separate CDC, PDP-11 and TRS-80 editions rather than conflating them.
+
 ## Play the restored BASIC game
 
 **[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
