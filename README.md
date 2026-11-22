@@ -40,9 +40,9 @@ The repository now includes a **full repaired copy of the historical 1,215-line 
 
 ### Historical hardware: a CDC 6000-series computer and a Model 33 Teletype
 
-![CDC 6600 mainframe computer, a representative machine in the CDC 6000 series](https://commons.wikimedia.org/wiki/Special:FilePath/CDC%206600.jc.jpg)
+![Control Data CDC 6600 mainframe with console and open equipment cabinets](https://upload.wikimedia.org/wikipedia/commons/c/c4/CDC_6600.jc.jpg)
 
-*CDC 6600 mainframe, photographed by [Jitze Couperus](https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). This is an example of a CDC 6000-series computer, **not evidence of the exact DND#1 host**. See also [CDC 6000 series — Wikipedia](https://en.wikipedia.org/wiki/CDC_6000_series).*
+*Control Data CDC 6600 mainframe and console, as shown in the supplied photograph. Photograph by [Jitze Couperus](https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg), licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). The CDC 6600 illustrates the CDC 6000-series family; **the exact machine on which DND#1 originally ran remains unverified**.*
 
 ![Teletype ASR 33 printing terminal with paper-tape reader, supplied for the DND#1 restoration](images/teletype-asr33.jpg)
 
