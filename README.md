@@ -80,6 +80,14 @@ It uses the Model III UART ports directly (**232–235**), with **300 baud, 8N1,
 
 **Testing:** a basic emulator startup and static source checks pass; actual RS-232 communication with the PiDP-11/70 **has not yet been tested**. A BASIC polling terminal can drop incoming characters even at 300 baud—see the contemporary [LDOS Quarterly](https://www.tim-mann.org/trs80/doc/ldosq1-6.pdf). For reliable lengthy output, the supplied **LDOS LCOMM/CMD** with the interrupt-buffered **RS232T/DVR** is the recommended fallback.
 
+## TRS-80 Model III — running on original hardware
+
+![Restored TRS-80 Model III running DND#1 on its original CRT](images/trs80-model-iii-dnd1.jpg)
+
+*Roy's restored 48 KB Radio Shack TRS-80 Model III, photographed on 22 November 2026, running the DND#1 text-terminal BASIC restoration. The machine is equipped with a Gotek floppy emulator and FreHD hard-disk emulator. The screen shows the new-game prompts and dungeon selection. Photograph: Roy Edmund Antaw.*
+
+**Hardware progress:** this photograph confirms the DND#1 game has reached its character-start/dungeon-selection interface on Roy's physical Model III. It does not, by itself, confirm a complete playthrough, the new LDOS HFE image boot procedure, or serial-terminal operation.
+
 ## Play the restored BASIC game
 
 **[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
