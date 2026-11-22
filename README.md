@@ -44,9 +44,9 @@ The repository now includes a **full repaired copy of the historical 1,215-line 
 
 *CDC 6600 mainframe, photographed by [Jitze Couperus](https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). This is an example of a CDC 6000-series computer, **not evidence of the exact DND#1 host**. See also [CDC 6000 series — Wikipedia](https://en.wikipedia.org/wiki/CDC_6000_series).*
 
-![1974 Teletype Model 33 printing terminal with paper tape, historical advertisement](https://commons.wikimedia.org/wiki/Special:FilePath/Teletype%20Model%2033%20Terminal%20June%201974.jpg)
+![Teletype ASR 33 printing terminal with paper-tape reader, supplied for the DND#1 restoration](images/teletype-asr33.jpg)
 
-*Teletype Model 33 terminal, Teletype Corporation advertisement (1974), [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Teletype_Model_33_Terminal_June_1974.jpg), reported as **US public domain**. The Model 33's printing output and paper-tape reader illustrate the remote terminal experience; this is **not a verified photograph of the specific terminal used by Garriott**.*
+*Teletype ASR 33 printing terminal with paper-tape reader. **Image supplied by the project maintainer** for this restoration; original photographer and licence not documented. This illustrates the period's remote terminal experience; **it is not identified as the specific terminal used by Richard Garriott**.*
 
 ### How we identified the original BASIC and computer — research history
 
