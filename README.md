@@ -16,6 +16,16 @@ The PDP-11 version is adjusted for DEC's syntax: `EXTEND` mode, backslash (`\`) 
 
 **Language reference provided for development:** Digital Equipment Corporation, *BASIC-PLUS Language Manual*, **AA-2623D-TC**, December 1981 (**RSTS/E V7.1 / BASIC-PLUS V7.1**). The manual documents `EXTEND` / `NOEXTEND` (chapter 7), `REM` (7.4), control/input/data syntax (chapter 9), and `LEFT`/`MID` (10.5). The uploaded manual itself is not redistributed in this repository.
 
+## What did the original DND#1 run on?
+
+**New source-based identification (22 November 2026):** the historical listing is a very close match for **Control Data Corporation (CDC) BASIC**, specifically the syntax documented for **CDC BASIC Version 2.0/2.1** on **CDC CYBER / 6000-series time-sharing computers**. This is stronger evidence than the often-repeated PDP-11 attribution.
+
+Its original `BASE 0`, `FILE #1="DNG1"`, `READ #D,...`, `WRITE #7,...`, `RESTORE #4` and particularly `RND(CLK(J9))` are all documented in the [1974 CDC BASIC Version 2 reference manual](https://bitsavers.trailing-edge.com/pdf/cdc/cyber/lang/basic/19980300B_BASIC_Language_Version_2_Reference_Nov74.pdf). The manual even demonstrates seeding a random sequence via `RND(CLK(0))`.
+
+The exact CDC **model, OS and BASIC compiler revision are not established** by the surviving source. [Garriott's 2014 account](https://www.shroudoftheavatar.com/?p=39149) refers to a PDP-11-type computer, while [later CRPG historical research](https://crpgaddict.blogspot.com/2021/07/game-421-dungeons-and-dragons-1-1977.html) identifies a CDC-6000. Our **PDP-11 BASIC-PLUS edition is deliberately a modern alternative port**, not a claim that the original was written in DEC BASIC.
+
+**[Read the full evidence-based original-platform investigation](docs/ORIGINAL_PLATFORM.md).**
+
 ## Play the restored BASIC game
 
 **[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
@@ -89,7 +99,7 @@ These sources inform the historical context and the **text-terminal presentation
 - [Santiago Zapata's DND#1 port demonstration](https://www.youtube.com/watch?v=_eXtqdae3G0) — a modern reconstruction whose commentary discusses the original numeric, command-driven interface.
 - [trs80gp by George Phillips](https://48k.ca/trs80gp.html) — emulator used for testing the Model III BASIC edition.
 
-Garriott's 2014 account describes a **PDP-11-type** remote computer, whereas the CRPG Addict review discusses evidence for a **CDC-6000**. The exact original host should be considered **uncertain**. Roy remembers the school time-sharing DEC/Teletype experience but cannot confirm the model; that uncertainty is respected here.
+**Platform research update:** although Garriott's 2014 account calls the original host a PDP-11 type, its BASIC file/clock statements closely match documented **CDC BASIC Version 2** on a **CYBER/6000-series** time-sharing system. The exact computer model and compiler version remain unknown. See [original-platform research](docs/ORIGINAL_PLATFORM.md).
 
 ## Credits and rights
 

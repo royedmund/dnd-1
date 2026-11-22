@@ -2,7 +2,7 @@
 
 **Status:** first BASIC-PLUS **source port**, 22 November 2026. **Static checks pass; NOT yet run under an actual RSTS/E BASIC-PLUS interpreter.** The tested playable edition remains the TRS-80 Model III ROM BASIC source at [`../DND1PLAY.BAS`](../DND1PLAY.BAS).
 
-The additional PDP-11 target is a celebration of the Teletype-and-timesharing experience Roy recalls, **not proof** that the original 1977 game ran on a PDP-11. The historical machine and BASIC dialect remain uncertain.
+The additional PDP-11 target is a celebration of the Teletype-and-timesharing experience Roy recalls, **not proof** that the original 1977 game ran on a PDP-11. **Source research strongly suggests the original used CDC BASIC (Version 2-compatible) on a CYBER / CDC 6000-class system**, not DEC BASIC-PLUS. The precise historical machine, operating system and compiler revision remain unverified. See [the source and platform investigation](ORIGINAL_PLATFORM.md).
 
 ## Files
 
