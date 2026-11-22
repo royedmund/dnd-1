@@ -60,6 +60,16 @@ The platform identification was a multi-step investigation, not an assumption ba
 
 **Research conclusion:** **CDC BASIC Version 2.0/2.1-compatible syntax — high confidence. CDC CYBER/6000 family — strongly indicated. Exact model, OS and compiler release — unverified.** Our [full source-evidence report](docs/ORIGINAL_PLATFORM.md) preserves those distinctions. This explains why we are developing separate CDC, PDP-11 and TRS-80 editions rather than conflating them.
 
+## Download the ready-to-boot LDOS 5.3 Model III floppy
+
+**[LDOS53_DND1PLAY_TTY300_ModelIII.hfe](disks/LDOS53_DND1PLAY_TTY300_ModelIII.hfe)** is a ready-to-use **HFE disk image** for the Model III, with both `DND1PLAY/BAS` (the dungeon game) and `TTY300/BAS` (the 300-baud PiDP-11 terminal) already saved as native LBASIC programs.
+
+**[Download the ZIP package](disks/LDOS53_DND1PLAY_TTY300_ModelIII.zip)** with the HFE, both readable source listings and instructions. At the LDOS prompt enter `BASIC`, then use `LOAD "DND1PLAY/BAS"` or `LOAD "TTY300/BAS"` followed by `RUN`.
+
+The boot system and BASIC interpreter are retained; only the optional `DOS/HLP` and `BASIC/HLP` files were removed to recover 30 KiB of raw disk allocation. **The original supplied HFE was not modified.** The native BASIC file streams and sector integrity are verified; the final trimmed disk still needs a physical Model III boot test.
+
+See the **[LDOS HFE disk build, contents and verification notes](docs/LDOS_FLOPPY.md)**.
+
 ## Use the real TRS-80 Model III as a PiDP-11/70 terminal
 
 **[TTY300.BAS — LDOS/LBASIC 300-baud terminal](basic/TTY300.BAS)** is a new, **pure BASIC** serial-terminal experiment for Roy's **48 KB Model III with RS-232**, communicating with a **PiDP-11/70 running RSTS/E** via a Raspberry Pi **USB-to-RS-232 adapter**. It emulates a simple printing terminal, inspired by the **Teletype ASR 33** pictured below; the game runs **on RSTS/E**, and the Model III provides the keyboard and display.
