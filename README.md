@@ -1,57 +1,87 @@
-# DND#1 — BASIC port experiments
+# DND#1 — text-terminal BASIC restoration
 
-A preservation and restoration project for Richard Garriott's 1977 **DND#1**, including earlier PDP-11-clone experiments and a partial TRS-80 **LDOS/LBASIC** port. Roy remembers the game running from a **Teletype Model 33** connected to a school time-sharing **DEC** system; the exact computer (possibly a PDP-11) and BASIC dialect have **not been confirmed**.
+A preservation and playable recreation of **Richard Garriott's _Dungeons and Dragons #1_ (1977)**, aimed primarily at the **TRS-80 Model III** while keeping the BASIC source as portable as practical. The emphasis is on the original **Teletype-era experience**: printed words, numeric dungeon maps, numbered commands, random encounters, treasure, and a decidedly unforgiving dungeon.
 
-**Status:** incomplete. The original BASIC dialect has not been established, and file I/O in the TRS-80 port remains unfinished. Save-game support is not implemented in that port.
+**Status (22 November 2026):** a **new, self-contained, playable BASIC adaptation** has been developed and tested under **trs80gp 2.5.8 emulating a TRS-80 Model III running ROM BASIC**. This is **not a line-for-line repair** of the complete historical program; some gameplay mechanics have been simplified or reconstructed, and the original files are preserved unchanged. **LDOS LBASIC 5.1 and physical Model III testing are still to do.**
 
-## Restoration project — Phase 1 audit
+## Play the restored BASIC game
 
-The first **source and dungeon-data audit** is complete. The two historical BASIC files and the original dungeon files have **not been modified**.
+**[Download / view DND1PLAY.BAS](DND1PLAY.BAS)** — 8-character DOS-friendly basename, plain-text numbered BASIC, with extensive `REM` explanations and **all seven surviving dungeon maps embedded**. No external dungeon files, special graphics, `PEEK`, `POKE` or host-dependent disk commands are needed during play.
 
-- [**Source and data audit**](docs/SOURCE_AUDIT.md): the original listing has 1,215 numbered lines, the TRS-80 attempt has 1,292, six external maps contain complete **26×26** numeric grids, and the 26×26 map embedded in the TRS-80 code is **different from all six**.
-- [**TRS80gp testing plan**](docs/TRS80GP_TESTING.md): reproducible Model III/LDOS/LBASIC testing using [George Phillips' emulator](https://48k.ca/trs80gp.html).
-- [**Read-only source checker**](tools/audit_sources.py): run `python3 tools/audit_sources.py` from a local checkout to repeat the source/map structural checks.
+With [George Phillips' trs80gp emulator](https://48k.ca/trs80gp.html), a convenient test is:
 
-**Known issues:** the existing port has an unclosed string at line `00404`, lacks completed save/load support, and doesn't yet select between the surviving dungeon maps. The original asks for `DNG3` but the repository has `DND3`. Details, including uncertainty about map provenance, are recorded in the audit.
+```sh
+trs80gp -m3 DND1PLAY.BAS
+```
 
-**Restoration goal:** build a **new, self-contained BASIC edition** (maps and game data embedded) with a text-first, Teletype-inspired interface. The physical 48 KB Model III version can be tackled separately if necessary. Original files remain as historical references.
+Or start trs80gp in Model III mode and choose **File → Run** with `DND1PLAY.BAS`. This method directly runs the listing in **Model III ROM BASIC**; it is **not proof of LDOS LBASIC compatibility**. To run on a physical Model III, the plain-text listing must first be transferred/imported as a BASIC program, using a compatible method and adequate string memory. It has not yet been tested on real hardware.
 
-**Testing status:** static inspection only. The game has **not yet been run successfully in TRS80gp as part of this audit**.
-
-## Repository contents
-
-| File | Purpose |
-| --- | --- |
-| [DND.BAS](DND.BAS) | Original-version BASIC listing supplied with this project |
-| [DND1TRS.BAS](DND1TRS.BAS) | Partial TRS-80 LBASIC port |
-| `DNG1`, `DNG2`, `DND3`, `DNG4`, `DNG5`, `DNG6`, `GMSTR` | Supplied game data and supporting files; retain their original names |
-| [DND1_source.pdf](DND1_source.pdf) | Reference source listing |
-| [LICENSE](LICENSE) | Repository licence text |
-
-## Trying the port
-
-Use a TRS-80 system or emulator with LDOS 5.x and LBASIC. Start with `DND1TRS.BAS`; transfer/import it using the method supported by your system. The port currently embeds external data in its code while file I/O is being worked on. Modern BASIC interpreters should not be assumed compatible.
-
-## Commands
+Answer **N** for a new game, choose a dungeon (1–6 from the surviving external grids; **7** is the distinct map embedded in Roy's earlier port), enter any player name, pick **Fighter, Cleric or Wizard**, and purchase equipment. Type **99** for help. A seed of **0** selects the repeatable default seed `1977`.
 
 | Command | Action |
 | --- | --- |
-| `1` | Move |
-| `2` | Open door |
+| `1` | Move one square: U, D, L, R |
+| `2` | Open an adjacent door |
 | `3` | Search for traps and secret doors |
-| `4` | Switch weapon hand |
-| `5` | Fight |
-| `6` | Look around |
-| `7` | Save game — not implemented in the port |
-| `8` | Use magic |
-| `9` | Buy magic |
-| `0` | Pass |
-| `11` | Buy hit points |
+| `4` | Change weapons |
+| `5` | Fight an encountered monster |
+| `6` | Look around (numeric 11×11 dungeon view, `9` = player) |
+| `7` | Print a **paper-tape-style save record** |
+| `8` | Cast magic (healing, attack, reveal) |
+| `9` | Buy a magic point |
+| `0` | Pass a turn |
+| `10` | View statistics and inventory |
+| `11` | Buy a hit point |
+| `12` | Eat spare food |
+| `98` / `99` | Quit / display help |
 
-## Remaining work
+A saved game prints the hero's information and 26 rows of 26 digits. On a later run, choose **O** for **Old Tape**, then enter those recorded values and rows. This uses standard `PRINT`/`INPUT` instead of device-specific file I/O; **it does not automatically create a disk save file**. Save and restore have been exercised in the emulator.
 
-- Identify the original BASIC interpreter and its file-handling behaviour.
-- Complete file I/O and save-game support in the TRS-80 version.
-- Record a repeatable load/run procedure and known failures for each target.
+See [the play guide](docs/PLAY_GUIDE.md) for instructions and caveats.
 
-The historical files remain at the repository root; new audit documents live in `docs/` and analysis utilities in `tools/`. Keep original data filenames intact when transferring files. Suggestions and test results are welcome through [repository issues](https://github.com/royedmund/dnd-1/issues).
+## Historical source material — preserved
+
+| File | Description |
+| --- | --- |
+| [DND.BAS](DND.BAS) | Historical-version BASIC transcription; retains its original file I/O dialect and quirks |
+| [DND1TRS.BAS](DND1TRS.BAS) | Roy's unfinished 2021 TRS-80/LDOS LBASIC conversion, preserved **as received** |
+| [DND1_source.pdf](DND1_source.pdf) | Surviving scanned historical source listing |
+| `DNG1`, `DNG2`, `DND3`, `DNG4`, `DNG5`, `DNG6` | Six complete 26×26 original-format numeric dungeon files |
+| [GMSTR](GMSTR) | Surviving game-state/map data (historical reference; not used by the new game at runtime) |
+| [DND1PLAY.BAS](DND1PLAY.BAS) | **New playable portable BASIC reconstruction**; original files not overwritten |
+| [tests/check_playable.py](tests/check_playable.py) | Reproducible check of BASIC line references and all seven embedded map datasets |
+
+The historical transcription expects `DNG3`, but the preserved third dungeon file is named `DND3`. The newer game embeds its data and doesn't depend on that filename at runtime. The seventh map comes from the separate 26×26 `DATA` block in `DND1TRS.BAS`; it is **not identical** to any of the six external maps.
+
+The port avoids `RESTORE <line>` (not supported by Model III ROM BASIC) and encodes each dungeon as **five quoted `DATA` strings**, each at most 156 digits. That makes all seven maps fit in the single listing while reducing loading overhead. `CLEAR 3000` reserves BASIC string storage in Model III BASIC; other dialects may need that one startup statement adjusted.
+
+## Documentation and test results
+
+- [Restoration design and changes](docs/RESTORATION_2026.md) — what was rebuilt, what is faithful, and what differs.
+- [Playing and saving](docs/PLAY_GUIDE.md) — concise user guide.
+- [TRS80gp testing notes](docs/TRS80GP_TESTING.md) — emulator test protocol plus dated results.
+- [Initial archival source audit](docs/SOURCE_AUDIT.md) — original-source and external-data findings.
+
+**Verified in emulator:** starting Fighter and Wizard characters, equipment shop, loading Dungeons 1, 2 and 7, look/help, moving and searching, status, monster encounter, offensive spell, retaliation/game-over, printing a full save, restoring a saved hero and map, and exit to BASIC. The static checker also validates all seven embedded grids against the surviving originals. **Not yet verified:** every historical rule/edge case, all dungeon playthroughs, LDOS LBASIC 5.1, physical hardware, or a fully authentic recreation of the incomplete original.
+
+## Period references and further reading
+
+These sources inform the historical context and the **text-terminal presentation**, not a claim that this new code is a literal copy of another port:
+
+- [Richard Garriott's DND #1 Contest (Shroud of the Avatar, 2014)](https://www.shroudoftheavatar.com/?p=39149) — origin story, source material and intended teletype aesthetic.
+- [The CRPG Addict: Dungeons and Dragons #1 (1977), reviewed 2021](https://crpgaddict.blogspot.com/2021/07/game-421-dungeons-and-dragons-1-1977.html) — gameplay, dungeon codes and historical interpretation.
+- [Bussiere's DND1 BASIC transcription (GitHub Gist)](https://gist.github.com/bussiere/11137495) — independent textual source for cross-checking.
+- [Richard Garriott's handwritten DND #1 design notes (Ultima Codex, 2015)](https://ultimacodex.com/2015/11/richard-garriotts-handwritten-dnd-1-design-notes/) — links to design notes and original dungeon layouts.
+- [Santiago Zapata's DND#1 port demonstration](https://www.youtube.com/watch?v=_eXtqdae3G0) — a modern reconstruction whose commentary discusses the original numeric, command-driven interface.
+- [trs80gp by George Phillips](https://48k.ca/trs80gp.html) — emulator used for testing the Model III BASIC edition.
+
+Garriott's 2014 account describes a **PDP-11-type** remote computer, whereas the CRPG Addict review discusses evidence for a **CDC-6000**. The exact original host should be considered **uncertain**. Roy remembers the school time-sharing DEC/Teletype experience but cannot confirm the model; that uncertainty is respected here.
+
+## Credits and rights
+
+- **Richard Garriott** — creator of DND#1 and the historical game design; historical material retains its original attribution and rights.
+- **Roy Edmund Antaw** — restoration project, historical source/data preservation, 2021 TRS-80 conversion, hardware context and creative direction.
+- **ChatGPT (OpenAI)** — AI-assisted BASIC reconstruction, in-code remarks, data integration, emulator checks and documentation, in collaboration with Roy.
+- Thanks to **George Phillips** and the other researchers, historians and port authors linked above.
+
+This repository retains its existing [LICENSE](LICENSE). The presence of that licence does **not** purport to alter copyright in Richard Garriott's original materials or the linked third-party references. The new reconstruction is an unofficial educational and preservation project, not an official Dungeons & Dragons or Ultima release.

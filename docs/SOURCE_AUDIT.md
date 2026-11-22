@@ -73,3 +73,7 @@ Run `python3 tools/audit_sources.py` to reproduce the structural and map checks.
 5. Record emulator configuration, actual output, failures and limitations.
 
 **Status:** Phase 1 source/data inventory completed. No original files modified; no emulator execution performed yet.
+
+## Addendum — new self-contained build, 22 November 2026
+
+The initial audit's legacy findings remain unchanged. A **new** playable BASIC reconstruction now exists at [`DND1PLAY.BAS`](../DND1PLAY.BAS), with all seven verified dungeon maps embedded as 35 short DATA strings, extensive remarks, and portable printed save/restore. Its gameplay is intentionally reconstructed and not a full historical source patch. See [the implementation record](RESTORATION_2026.md) and [the emulator results](TRS80GP_TESTING.md). The original source, scan and data files were left untouched.

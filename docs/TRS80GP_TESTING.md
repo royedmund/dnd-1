@@ -1,8 +1,27 @@
+# Tested playable edition — 22 November 2026
+
+**Emulator:** George Phillips' **trs80gp 2.5.8**, **TRS-80 Model III ROM BASIC**, automatic `.BAS` loading. Unlike the historical LDOS LBASIC port, the **new** [`DND1PLAY.BAS`](../DND1PLAY.BAS) was exercised and produced actual screen output. **LDOS 5.1 LBASIC and physical hardware are still untested.**
+
+Observed passing scenarios:
+
+1. **Dungeon 1 Fighter:** character creation, 3d6 rolls, equipment shopping, the command prompt, numeric `6=LOOK` map, `99=HELP` and `98=QUIT` (clean return to BASIC).
+2. **Movement/save:** movement to another square, search, player status, `7=SAVE` printing all 26 mutated map rows, then clean exit.
+3. **Dungeon 2 Wizard:** monster encountered by moving left, `8=USE MAGIC` attacks, monster counterattack and a game-over path.
+4. **Dungeon 7:** the distinct `DND1TRS.BAS` embedded map loaded into the reconstructed program and reached its command prompt.
+5. **Old-tape restore:** chose `O`, entered hero data, seed, inventory and all 26 complete dungeon rows; the map and player position were restored, `99=HELP` worked and quit returned to BASIC.
+6. **Compatibility:** `RESTORE 20` produced `?SN Error` in Model III ROM BASIC; the new loader uses only `RESTORE` and `READ`. String-space allocation and loading were also verified after adding `CLEAR 3000`.
+
+Static tests: run `python3 tests/check_playable.py` in a checkout. It verifies BASIC line numbers/branches, the 35 embedded map chunks, map contents and the preserved source files.
+
+**Scope limitation:** These are representative scenarios, not full dungeon completions or a test of every original historical feature. The new source is a playable, independently reconstructed game, not a verified rules-identical original.
+
+---
+
 # Testing DND#1 with George Phillips' trs80gp
 
 Primary reference: https://48k.ca/trs80gp.html
 
-This is a **test protocol**, not a record of completed emulator tests. TRS80gp was identified as an emulator target; it has **not yet been run against the game** in this audit.
+This protocol began as a plan for the archival port. The new standalone reconstruction has since been run in Model III ROM BASIC; see the verified results above. The historical `DND1TRS.BAS` remains untested as a fully working game.
 
 ## Recommended baseline
 
