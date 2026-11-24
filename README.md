@@ -158,7 +158,7 @@ These sources inform the historical context and the **text-terminal presentation
 - [The CRPG Addict: Dungeons and Dragons #1 (1977), reviewed 2021](https://crpgaddict.blogspot.com/2021/07/game-421-dungeons-and-dragons-1-1977.html) — gameplay, dungeon codes and historical interpretation.
 - [Bussiere's DND1 BASIC transcription (GitHub Gist)](https://gist.github.com/bussiere/11137495) — independent textual source for cross-checking.
 - [Richard Garriott's handwritten DND #1 design notes (Ultima Codex, 2015)](https://ultimacodex.com/2015/11/richard-garriotts-handwritten-dnd-1-design-notes/) — links to design notes and original dungeon layouts.
-- [Richard Garriott Simulator 1977 (toqc.com)](https://toqc.com/rgsim1977.html) — external playable/comparison reference supplied by the project maintainer. Direct gameplay verification pending; see [comparison checklist](docs/RGSIM1977_COMPARISON.md).
+- [Richard Garriott Simulator 1977 (toqc.com)](https://toqc.com/rgsim1977.html) — comparison reference supplied by the maintainer. A subsequently supplied BASIC listing closely resembles this project's PDP-11 port, with browser-edition edits and extra validation; its provenance as the site's actual implementation has not been confirmed. [Read the source findings and pending gameplay tests](docs/RGSIM1977_COMPARISON.md).
 - [Santiago Zapata's DND#1 port demonstration](https://www.youtube.com/watch?v=_eXtqdae3G0) — a modern reconstruction whose commentary discusses the original numeric, command-driven interface.
 - [trs80gp by George Phillips](https://48k.ca/trs80gp.html) — emulator used for testing the Model III BASIC edition.
 
