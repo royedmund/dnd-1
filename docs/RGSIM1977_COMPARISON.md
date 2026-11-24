@@ -6,7 +6,7 @@
 
 ## Verification scope and limits
 
-The external simulator page could not be loaded by the available web access (fetch disabled); a search for its exact title and URL did not produce source code or dependable mechanics documentation. Consequently **no side-by-side simulator run, deterministic seed comparison, or gameplay-parity claim is made**. Do not treat the external simulator as the historical original by default: it is a separate implementation until its provenance and code are checked.
+The external simulator page was not available for a direct gameplay comparison through the available web access. Consequently **no side-by-side simulator run, deterministic seed comparison, or gameplay-parity claim is made**. Do not treat the external simulator as the historical original by default: it is a separate implementation until its provenance and code are checked.
 
 A static review of repository source files **DND.BAS** (historical transcription), **cdc/DND1CDC.BAS** (repaired CDC source), and **DND1PLAY.BAS** (Model III reconstruction) was completed. Its confirmed findings are as follows:
 
@@ -33,10 +33,38 @@ The maintainer supplied a 655-line BASIC listing labelled as the simulator's sou
 - Compared with the repository PDP-11 version, visible additions include `REM BROWSER EDITION` and stronger validation for restored inventory, map rows and active-monster position.
 - **Not executed:** no DEC BASIC-PLUS interpreter or external simulator runtime was available. These are structural/source inspections, **not passed gameplay tests**.
 
+### Confirmed source-level defect: dungeon entrance fallback
+
+In the supplied listing, `7100` establishes `GY=1`, `GX=12`; `7120` returns if that tile is floor (`0`). If it is not, lines `7130`–`7160` scan for floor tiles. However, line `7145` reads:
+
+```basic
+7145 IF GX <> 12 OR GY <> 1 THEN 7160
+```
+
+Because `GX` and `GY` are still `12` and `1` throughout that scan, the condition is always false, so line `7150` updates the entrance to **every** floor tile visited rather than the first. The result is the **last floor tile in scan order**, not the nearest or first valid floor. Consequently, the existing report's previous conclusion that this fallback never selects an entrance was incorrect; the more precise finding is that it **chooses the last scanned floor tile**. For maps 2, 3, 5 and 7, this is a valid but unintended entrance position; for maps 1, 4 and 6 the preferred entrance is already open. This is a code-level finding; runtime behaviour remains untested.
+
+Suggested correction if the intention is *first available floor*: immediately `RETURN` upon finding a floor, instead of continuing the scan:
+
+```basic
+7130 FOR YY = 1 TO 24 \ FOR XX = 1 TO 24
+7140 IF VAL(MID(D$(YY), XX + 1, 1)) <> 0 THEN 7160
+7150 GY = YY \ GX = XX \ RETURN
+7160 NEXT XX \ NEXT YY
+7170 PRINT "THIS DUNGEON HAS NO ENTRANCE" \ END
+```
+
+This correction has **not been applied** to either executable BASIC version; it needs interpreter testing and a design decision about desired entrance selection.
+
+### Provenance and gameplay comparison limitations
+
+The uploaded listing retains the project's own title, author credits, seven maps and PDP-11 BASIC-PLUS structure. It includes extra `REM` and validation statements, but **does not establish that the TOQC web simulator runs this listing**, or that it independently recreates Garriott's historical rules. It cannot substantiate an independent head-to-head parity claim.
+
+Other source-level checks to run before importing repairs: confirm the typed `RUN` restart behaviour in BASIC-PLUS, exercise all old-tape validation paths, and compare encounter timing and character progression against the historical CDC source. The supplied port's combat and item formulas should not be assumed historically exact.
+
 ### Follow-up engineering checks
 
 - Compare the uploaded browser-edition modifications with the repository's PDP-11 source line by line before merging any fixes.
-- Test all seven entrance placements, particularly the fallback for dungeon 7, under a real interpreter.
+- Test preferred and fallback entrance selection for **all seven** maps (especially maps **2, 3, 5 and 7**) under a real interpreter; decide whether the first or last passable floor should be selected.
 - Exercise all restore validation branches, especially inventory/weapon consistency and saved active-monster coordinates.
 - Resolve whether the actual TOQC site hosts this derivative or another implementation, then conduct a genuine independent comparison.
 
