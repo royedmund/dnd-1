@@ -20,6 +20,26 @@ A static review of repository source files **DND.BAS** (historical transcription
 | Save/restore | Printed paper-tape-style record entered manually | CDC numbered-file / GMSTR mechanisms | Unknown |
 | Runtime testing | Model III ROM BASIC tests documented in README | Static checks only; CDC runtime untested | Not run |
 
+## Uploaded listing review — 25 November 2026
+
+The maintainer supplied a 655-line BASIC listing labelled as the simulator's source. **The listing itself identifies as the project's PDP-11/RSTS/E BASIC-PLUS adaptation**, including `REM RECREATION PORTED FROM THE MODEL III EDITION` and `REM RESTORATION BY ROY ANTAW + CHATGPT OPENAI`. It closely follows `pdp11/DND11.BAS` in this repository, with additional browser-edition repair notes and input checks. Its origin as the independent TOQC simulator's source is **not established**. Treat it as an enhanced derivative of our PDP-11 port unless independent provenance is provided.
+
+### Static checks completed on the supplied listing
+
+- 655 numbered lines, no duplicate line numbers.
+- 182 quoted DATA rows grouped into 7 maps of 26 rows × 26 digits; all map rows have the expected 26-digit shape.
+- Map codes span 0–8. Map 7's preferred entrance at row 1, column 12 is a wall and requires the program's fallback scan.
+- The code contains fighter/cleric/wizard character creation, seeded random rolls, equipment purchasing, map movement, doors, traps, combat, healing/bolt/reveal magic, printed save/restore and monster encounters.
+- Compared with the repository PDP-11 version, visible additions include `REM BROWSER EDITION` and stronger validation for restored inventory, map rows and active-monster position.
+- **Not executed:** no DEC BASIC-PLUS interpreter or external simulator runtime was available. These are structural/source inspections, **not passed gameplay tests**.
+
+### Follow-up engineering checks
+
+- Compare the uploaded browser-edition modifications with the repository's PDP-11 source line by line before merging any fixes.
+- Test all seven entrance placements, particularly the fallback for dungeon 7, under a real interpreter.
+- Exercise all restore validation branches, especially inventory/weapon consistency and saved active-monster coordinates.
+- Resolve whether the actual TOQC site hosts this derivative or another implementation, then conduct a genuine independent comparison.
+
 ## Repeatable side-by-side test protocol (pending)
 
 1. Record external simulator version/date, platform, instructions and any available source or downloadable package.
