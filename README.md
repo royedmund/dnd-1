@@ -150,6 +150,16 @@ The port avoids `RESTORE <line>` (not supported by Model III ROM BASIC) and enco
 
 **Verified in emulator:** starting Fighter and Wizard characters, equipment shop, loading Dungeons 1, 2 and 7, look/help, moving and searching, status, monster encounter, offensive spell, retaliation/game-over, printing a full save, restoring a saved hero and map, and exit to BASIC. The static checker also validates all seven embedded grids against the surviving originals. **Not yet verified:** every historical rule/edge case, all dungeon playthroughs, LDOS LBASIC 5.1, physical hardware, **PDP-11 / RSTS/E BASIC-PLUS runtime**, or a fully authentic recreation of the incomplete original.
 
+## Browser adaptation: Richard Garriott Simulator 1977
+
+The maintainer supplied a revised BASIC listing and accompanying edition notes from [Richard Garriott Simulator 1977](https://toqc.com/rgsim1977.html). The publisher describes an **offline JavaScript BASIC interpreter**, with a program counter, subroutine and loop stacks, and a `DATA` cursor, executing an editable adaptation of our `pdp11/DND11.BAS`. **This is a browser implementation of our reconstructed game, not an independent copy of the original CDC executable or proof of RSTS/E BASIC-PLUS compatibility.**
+
+The publisher documents improvements to tape restore validation, numeric selection checks, lowercase commands, reset/replay and entrance search. In their browser edition, `7` prints a paper tape and **Session → Save transcript** preserves the printed output for later manual restore (`O`). This Session feature is specific to the browser environment.
+
+**Attribution:** Richard Garriott (original 1977 game); Roy Antaw and ChatGPT (restoration and PDP-11 source); Richard Garriott Simulator 1977 at toqc.com (browser interpreter, adaptations and publisher-supplied notes). The publisher credits **TedColes** for a cropped/masked console photograph derived from [Teletype 33 ASR](https://commons.wikimedia.org/wiki/File:Teletype_33_ASR.jpg), under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). This credit refers to the **TOQC console image**, not the separate Teletype image already included in this repository. The source-archive licence information in the supplied notes was truncated and remains unverified.
+
+**Test status:** source reviewed; no independent side-by-side browser run completed. See [browser-edition notes, code findings and comparison plan](docs/RGSIM1977_COMPARISON.md).
+
 ## Period references and further reading
 
 These sources inform the historical context and the **text-terminal presentation**, not a claim that this new code is a literal copy of another port:
@@ -158,7 +168,7 @@ These sources inform the historical context and the **text-terminal presentation
 - [The CRPG Addict: Dungeons and Dragons #1 (1977), reviewed 2021](https://crpgaddict.blogspot.com/2021/07/game-421-dungeons-and-dragons-1-1977.html) — gameplay, dungeon codes and historical interpretation.
 - [Bussiere's DND1 BASIC transcription (GitHub Gist)](https://gist.github.com/bussiere/11137495) — independent textual source for cross-checking.
 - [Richard Garriott's handwritten DND #1 design notes (Ultima Codex, 2015)](https://ultimacodex.com/2015/11/richard-garriotts-handwritten-dnd-1-design-notes/) — links to design notes and original dungeon layouts.
-- [Richard Garriott Simulator 1977 (toqc.com)](https://toqc.com/rgsim1977.html) — comparison reference supplied by the maintainer. A subsequently supplied BASIC listing closely resembles this project's PDP-11 port, with browser-edition edits and extra validation; its provenance as the site's actual implementation has not been confirmed. [Read the source findings and pending gameplay tests](docs/RGSIM1977_COMPARISON.md).
+- [Richard Garriott Simulator 1977 (toqc.com)](https://toqc.com/rgsim1977.html) — publisher-described offline JavaScript interpreter for a browser-repaired edition of this project's PDP-11 BASIC-PLUS source. Its supplied notes describe game controls, paper-tape transcript saving, restore validation and other repairs. [Read the detailed comparison, credits and unverified runtime tests](docs/RGSIM1977_COMPARISON.md).
 - [Santiago Zapata's DND#1 port demonstration](https://www.youtube.com/watch?v=_eXtqdae3G0) — a modern reconstruction whose commentary discusses the original numeric, command-driven interface.
 - [trs80gp by George Phillips](https://48k.ca/trs80gp.html) — emulator used for testing the Model III BASIC edition.
 
