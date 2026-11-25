@@ -151,7 +151,7 @@ The port avoids `RESTORE <line>` (not supported by Model III ROM BASIC) and enco
 **Verified in emulator:** starting Fighter and Wizard characters, equipment shop, loading Dungeons 1, 2 and 7, look/help, moving and searching, status, monster encounter, offensive spell, retaliation/game-over, printing a full save, restoring a saved hero and map, and exit to BASIC. The static checker also validates all seven embedded grids against the surviving originals. **Not yet verified:** every historical rule/edge case, all dungeon playthroughs, LDOS LBASIC 5.1, physical hardware, **PDP-11 / RSTS/E BASIC-PLUS runtime**, or a fully authentic recreation of the incomplete original.
 
 ## Browser adaptation: Richard Garriott Simulator 1977
-
+Thanks Riley ;-) 
 The maintainer supplied a revised BASIC listing and accompanying edition notes from [Richard Garriott Simulator 1977](https://toqc.com/rgsim1977.html). The publisher describes an **offline JavaScript BASIC interpreter**, with a program counter, subroutine and loop stacks, and a `DATA` cursor, executing an editable adaptation of our `pdp11/DND11.BAS`. **This is a browser implementation of our reconstructed game, not an independent copy of the original CDC executable or proof of RSTS/E BASIC-PLUS compatibility.**
 
 The publisher documents improvements to tape restore validation, numeric selection checks, lowercase commands, reset/replay and entrance search. In their browser edition, `7` prints a paper tape and **Session → Save transcript** preserves the printed output for later manual restore (`O`). This Session feature is specific to the browser environment.
